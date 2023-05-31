@@ -1,8 +1,8 @@
 package com.example.lab7.controller;
 
 
-import com.example.lab7.Entity.Usuarios;
-import com.example.lab7.repository.UsuariosRepository;
+import com.example.lab7.Entity.Pagos;
+import com.example.lab7.repository.PagosRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,31 +16,31 @@ import java.util.List;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/usuarios")
-public class UsuariosController {
+@RequestMapping("/pagos")
+public class PagosController {
 
-   @Autowired
-   UsuariosRepository usuariosRepository;
+    @Autowired
+    PagosRepository pagosRepository;
 
     @ResponseBody
     @GetMapping("/lista")
-    public List<Usuarios> listaUsuarios(){
+    public List<Pagos> listaPagos(){
 
-        return usuariosRepository.findAll();
+        return pagosRepository.findAll();
     }
 
-    @PostMapping("/saveUser")
-    public ResponseEntity<HashMap<String, Object>> saveUser(
-            @RequestBody Usuarios usuarios,
+        @PostMapping("/registrarPago")
+    public ResponseEntity<HashMap<String, Object>> savePago(
+            @RequestBody Pagos pagos,
             @RequestParam(value = "fetchId", required = false) boolean fetchId) {
 
         HashMap<String, Object> responseJson = new HashMap<>();
         if(fetchId){
-            responseJson.put("id",usuarios.getId());
+            responseJson.put("id",pagos.getId());
         }
-        usuariosRepository.save(usuarios);
+        pagosRepository.save(pagos);
         responseJson.put("estado","creado");
-        responseJson.put("id creado", usuarios.getId());
+        responseJson.put("id creado", pagos.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(responseJson);
 
     }
@@ -54,6 +54,5 @@ public class UsuariosController {
         }
         return ResponseEntity.badRequest().body(responseMap);
     }
-
 
 }
