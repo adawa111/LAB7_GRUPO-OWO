@@ -142,7 +142,7 @@ public class SolicitudesController {
                 }
             } else {
                 responseMap.put("estado", "error");
-                responseMap.put("msg", "no se encontró el producto con id: " +idSolicitud);
+                responseMap.put("msg", "no se encontró la solicitud con id: " +idSolicitud);
                 return ResponseEntity.badRequest().body(responseMap);
             }
         } else {
