@@ -24,7 +24,7 @@ public class Acciones {
 
     @ManyToOne
     @JoinColumn(name = "usuarios_id",nullable = false)
-    private Usuarios usuariosId;
+    private Usuarios usuarios;
 
 
 }

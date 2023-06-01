@@ -2,6 +2,7 @@ package com.example.lab7.controller;
 
 
 import com.example.lab7.Entity.Acciones;
+import com.example.lab7.Entity.Usuarios;
 import com.example.lab7.repository.AccionesRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @CrossOrigin
@@ -21,6 +23,13 @@ public class AccionesController {
     @Autowired
     AccionesRepository accionesRepository;
 
+
+    @ResponseBody
+    @GetMapping("/lista")
+    public List<Acciones> listaAccciones(){
+
+        return accionesRepository.findAll();
+    }
 
     @PostMapping("/save")
     public ResponseEntity<HashMap<String, Object>> saveStonks(
